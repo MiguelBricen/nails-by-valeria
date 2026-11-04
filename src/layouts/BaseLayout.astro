@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import { business, getInstagramUrl, getWhatsAppPhone } from '../data/business';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${business.name} | ${business.tagline} · ${business.country}`,
+  description = business.description,
+} = Astro.props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+const socialImage = Astro.site
+  ? new URL('/images/branding/social-preview.png', Astro.site).toString()
+  : '/images/branding/social-preview.png';
+const instagramUrl = getInstagramUrl();
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NailSalon',
+  name: business.name,
+  description,
+  areaServed: business.country,
+  image: socialImage,
+  ...(canonical && { url: canonical }),
+  ...(getWhatsAppPhone() && { telephone: `+${getWhatsAppPhone()}` }),
+  ...(instagramUrl && { sameAs: [instagramUrl] }),
+};
+---
+
+<!doctype html>
+<html lang="es-NI">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F4F0" />
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_NI" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${business.name} — ${business.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

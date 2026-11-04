@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F8F4F0"/>
+  <path d="M746 0h454v630H875c78-122 39-207-34-290C765 249 690 151 746 0Z" fill="#E8D8D0"/>
+  <circle cx="1000" cy="315" r="184" fill="none" stroke="#B99483" stroke-width="1.5"/>
+  <circle cx="1000" cy="315" r="160" fill="none" stroke="#A58A62" stroke-width="1"/>
+  <text x="112" y="166" font-family="Arial,sans-serif" font-size="19" letter-spacing="7" fill="#706660">NAIL ART · NICARAGUA</text>
+  <text x="106" y="309" font-family="Georgia,'Times New Roman',serif" font-size="80" fill="#302824">Nails by Valeria</text>
+  <path d="M112 353h83" stroke="#A58A62" stroke-width="2"/>
+  <text x="112" y="416" font-family="Georgia,'Times New Roman',serif" font-size="39" font-style="italic" fill="#55463B">Beauty in every detail.</text>
+  <text x="975" y="373" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="151" font-style="italic" fill="#302824">V</text>
+  <text x="112" y="548" font-family="Arial,sans-serif" font-size="15" letter-spacing="4" fill="#706660">TRABAJOS REALES · DISEÑOS DE UÑAS · NICARAGUA</text>
+</svg>

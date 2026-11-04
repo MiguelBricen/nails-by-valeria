@@ -1,0 +1,27 @@
+{
+  "name": "nails-by-valeria",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run generate:gallery && astro check && astro build",
+    "preview": "astro preview",
+    "check": "npm run generate:gallery && astro check",
+    "generate:gallery": "node scripts/generate-gallery.mjs",
+    "verify:build": "node scripts/verify-build.mjs",
+    "verify:cloudflare": "node scripts/verify-cloudflare-output.mjs",
+    "verify:pages-url": "node scripts/verify-pages-url.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@lucide/astro": "^1.67.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^7.4.5",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "typescript": "^5.9.3"
+  }
+}

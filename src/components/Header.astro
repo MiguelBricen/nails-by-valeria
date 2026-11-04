@@ -1,0 +1,74 @@
+---
+import { ArrowUpRight, Menu, X } from '@lucide/astro';
+import { business, getWhatsAppUrl, whatsappMessages } from '../data/business';
+const bookingUrl = getWhatsAppUrl(whatsappMessages.general);
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#inicio" aria-label={`${business.name}, inicio`}>
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span class="brand-name">{business.name}<small>{business.tagline}</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menú">
+      <Menu size={22} class="menu-open-icon" />
+      <X size={22} class="menu-close-icon" />
+    </button>
+    <nav class="site-nav" id="site-navigation" aria-label="Navegación principal">
+      <a href="#disenos">Diseños</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre-mi">El estudio</a>
+      <a href="#contacto">Contacto</a>
+      {bookingUrl && <a class="nav-cta" href={bookingUrl} target="_blank" rel="noreferrer">Reservar cita <ArrowUpRight size={15} /></a>}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('.site-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+    navigation?.classList.toggle('is-open', !isOpen);
+    document.body.classList.toggle('menu-open', !isOpen);
+  });
+
+  navigation?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Abrir menú');
+      navigation.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+    navigation?.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    toggle.focus();
+  });
+
+  const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('.site-nav a[href^="#"]')];
+  const sections = sectionLinks
+    .map((link) => document.querySelector<HTMLElement>(link.hash))
+    .filter((section): section is HTMLElement => section !== null);
+
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        sectionLinks.forEach((link) => {
+          if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+    }, { rootMargin: '-18% 0px -68% 0px' });
+    sections.forEach((section) => sectionObserver.observe(section));
+  }
+</script>

@@ -1,0 +1,15 @@
+---
+import { ArrowLeft } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout title={`Página no encontrada — ${business.name}`}>
+  <main class="not-found">
+    <span class="brand-mark" aria-hidden="true">V</span>
+    <p class="eyebrow"><span class="eyebrow-line"></span> Nails by Valeria</p>
+    <h1>Esta página<br /><em>no está aquí.</em></h1>
+    <p>Pero aún podemos volver al inicio y encontrar algo bonito.</p>
+    <a class="button button-dark" href="/"><ArrowLeft size={16} /> Volver al inicio</a>
+  </main>
+</BaseLayout>

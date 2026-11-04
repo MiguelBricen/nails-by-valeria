@@ -1,0 +1,23 @@
+---
+import { Camera } from '@lucide/astro';
+import { business, getInstagramUrl } from '../data/business';
+
+const instagramUrl = getInstagramUrl();
+---
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <a class="brand footer-brand" href="#inicio" aria-label={`${business.name}, volver al inicio`}>
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span class="brand-name">{business.name}<small>{business.tagline}</small></span>
+    </a>
+    <p>Un poquito de belleza<br />en los días cotidianos.</p>
+    <nav aria-label="Navegación del pie de página">
+      <a href="#disenos">Diseños</a><a href="#servicios">Servicios</a><a href="#sobre-mi">El estudio</a><a href="#contacto">Contacto</a>
+    </nav>
+    <div class="footer-socials">
+      {instagramUrl && <a href={instagramUrl} aria-label="Instagram" target="_blank" rel="noreferrer"><Camera size={17} /></a>}
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} {business.name}. Hecho con cariño.</span><a href="#inicio">Volver arriba ↑</a></div>
+</footer>

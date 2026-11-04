@@ -1,0 +1,72 @@
+{
+  "ft1": {
+    "id": "design-01",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas largas en tono nude con puntas amarillas y pequeños adornos brillantes.",
+    "description": "Manicura nude con puntas amarillas y detalles brillantes."
+  },
+  "ft2": {
+    "id": "design-02",
+    "width": 738,
+    "height": 1600,
+    "alt": "Mano con uñas rosadas y puntas blancas junto a una flor blanca sobre el agua.",
+    "description": "Uñas rosadas con puntas blancas, fotografiadas junto a una flor."
+  },
+  "ft3": {
+    "id": "design-03",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas almendradas en tonos nude y lila, con detalles oscuros y líneas en relieve.",
+    "description": "Diseño en tonos nude y lila con detalles gráficos."
+  },
+  "ft4": {
+    "id": "design-04",
+    "width": 738,
+    "height": 1600,
+    "alt": "Manos con uñas rosadas, puntas blancas y pequeños detalles de líneas y corazones.",
+    "description": "Uñas rosadas y blancas con pequeños detalles dibujados."
+  },
+  "ft5": {
+    "id": "design-05",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas almendradas nude con detalles negros estampados en las puntas.",
+    "description": "Diseño nude con detalles estampados en negro."
+  },
+  "ft6": {
+    "id": "design-06",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas rosadas con puntas rojas y un adorno blanco en relieve.",
+    "description": "Uñas rosadas con puntas rojas y un detalle blanco en relieve."
+  },
+  "ft7": {
+    "id": "design-07",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas rosadas y transparentes con puntas verdes y detalles dibujados.",
+    "description": "Manicura rosada con puntas verdes y detalles gráficos."
+  },
+  "ft8": {
+    "id": "design-08",
+    "width": 738,
+    "height": 1600,
+    "alt": "Uñas largas con base rosada, puntas rojas y puntos blancos.",
+    "description": "Diseño rojo y rosado con puntos blancos."
+  },
+  "ft9": {
+    "id": "design-09",
+    "width": 1080,
+    "height": 1512,
+    "alt": "Uñas en tono nude con puntas azul cobalto, una flor blanca y pequeños detalles dorados.",
+    "description": "Uñas nude y azul cobalto con detalles florales y dorados."
+  },
+  "f10": {
+    "id": "design-10",
+    "width": 738,
+    "height": 1600,
+    "alt": "Mano con uñas nude y azules: puntas azul cobalto, una uña azul sólido y detalles blancos y dorados.",
+    "description": "Diseño nude y azul cobalto con detalles claros y dorados."
+  }
+}

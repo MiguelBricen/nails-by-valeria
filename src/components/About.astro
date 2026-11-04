@@ -1,0 +1,21 @@
+---
+import { ArrowUpRight, Heart } from '@lucide/astro';
+import { business, getWhatsAppUrl, whatsappMessages } from '../data/business';
+
+const aboutUrl = getWhatsAppUrl(whatsappMessages.general);
+---
+
+<section class="about-section" id="sobre-mi" aria-labelledby="about-title">
+  <div class="about-art" aria-hidden="true">
+    <div class="about-art-circle"><span>NAILS BY</span><Heart size={24} stroke-width={1.3} /><em>Valeria</em></div>
+    <span class="about-art-sparkle sparkle-one">✳</span><span class="about-art-sparkle sparkle-two">✳</span>
+  </div>
+  <div class="about-copy">
+    <p class="eyebrow"><span class="eyebrow-line"></span> La artista detrás de la colección</p>
+    <h2 id="about-title">Conoce a<br /><em>{business.professionalName}.</em></h2>
+    <p class="about-lead">Nails by Valeria · Nicaragua</p>
+    <p class="about-description">{business.about}</p>
+    {aboutUrl && <a class="text-link" href={aboutUrl} target="_blank" rel="noreferrer">Escribir a Valeria <ArrowUpRight size={16} /></a>}
+    <span class="about-signature">{business.tagline}</span>
+  </div>
+</section>

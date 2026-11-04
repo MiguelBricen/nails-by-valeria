@@ -1,0 +1,32 @@
+---
+import { MessageCircle } from '@lucide/astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Gallery from '../components/Gallery.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business, getWhatsAppUrl, whatsappMessages } from '../data/business';
+
+const bookingUrl = getWhatsAppUrl(whatsappMessages.general);
+---
+
+<BaseLayout>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span>{business.tagline}</span><span aria-hidden="true">✳</span><span>{business.country.toUpperCase()}</span></div>
+  <Header />
+  <main id="contenido">
+    <Hero />
+    <div class="page-divider"><span>02</span><span>La colección</span><span></span></div>
+    <Gallery />
+    <Services />
+    <About />
+    <Contact />
+  </main>
+  <Footer />
+  {bookingUrl && <a class="whatsapp-float" href={bookingUrl} target="_blank" rel="noreferrer" aria-label="Escribir a Valeria por WhatsApp">
+    <MessageCircle size={22} /><span>Agenda tu cita</span>
+  </a>}
+</BaseLayout>

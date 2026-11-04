@@ -1,0 +1,38 @@
+---
+import { ArrowDown, ArrowUpRight, Sparkles } from '@lucide/astro';
+import { business, getWhatsAppUrl, whatsappMessages } from '../data/business';
+import { designs } from '../data/designs';
+
+const featuredDesign = designs[0];
+const bookingUrl = getWhatsAppUrl(whatsappMessages.general);
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="eyebrow-line"></span> {business.tagline}</p>
+    <h1 id="hero-title">Nails by<br /><em>Valeria.</em></h1>
+    <p class="hero-description">Un espacio para descubrir los trabajos de uñas de Valeria, elegir tus diseños favoritos y preguntar por tu próxima cita.</p>
+    <div class="hero-actions">
+      <a class="button button-dark" href="#disenos">Ver la galería <ArrowDown size={16} /></a>
+      {bookingUrl && <a class="button button-quiet" href={bookingUrl} target="_blank" rel="noreferrer">Consultar por WhatsApp <ArrowUpRight size={16} /></a>}
+    </div>
+    <div class="hero-note"><Sparkles size={15} /><span>Una colección de trabajos reales, compartidos por Valeria.</span></div>
+    <span class="hero-index" aria-hidden="true">MANICURA · NICARAGUA</span>
+  </div>
+  {featuredDesign && <div class="hero-visual">
+    <div class="hero-image-frame">
+      <img
+        src={featuredDesign.image}
+        alt={featuredDesign.imageAlt}
+        width={featuredDesign.width}
+        height={featuredDesign.height}
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="hero-stamp">Trabajo de<br />Valeria</span>
+    </div>
+    <div class="hero-caption"><span>{featuredDesign.name}</span><span>DISEÑO DE LA GALERÍA</span></div>
+    <div class="hero-seal"><span>beauty<br />in every detail</span><i aria-hidden="true">✳</i></div>
+  </div>}
+  <span class="hero-side-note" aria-hidden="true">NAILS BY VALERIA · NICARAGUA</span>
+</section>

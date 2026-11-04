@@ -1,0 +1,48 @@
+---
+import { ArrowUpRight, Flower2, Heart, Sparkles } from '@lucide/astro';
+import { services } from '../data/services';
+import { business, getWhatsAppUrl, whatsappMessages } from '../data/business';
+
+const bookingUrl = getWhatsAppUrl(whatsappMessages.general);
+---
+
+<section class="section services-section" id="servicios" aria-labelledby="services-title">
+  <div class="services-intro">
+    <div>
+      <p class="eyebrow"><span class="eyebrow-line"></span> Un momento solo tuyo</p>
+      <h2 id="services-title">El arte de cuidar<br /><em>cada detalle.</em></h2>
+    </div>
+    <p>Consulta con Valeria los detalles y la disponibilidad del servicio que te interesa.</p>
+  </div>
+  {services.length > 0 ? (
+    <div class="services-list">
+      {services.map((service, index) => (
+        <article class="service-row">
+          <span class="service-number">0{index + 1}</span>
+          <span class="service-visual" aria-hidden="true">
+            {service.image ? (
+              <img src={service.image} alt="" width="48" height="48" loading="lazy" />
+            ) : service.icon === 'heart' ? (
+              <Heart size={19} />
+            ) : service.icon === 'flower' ? (
+              <Flower2 size={19} />
+            ) : (
+              <Sparkles size={19} />
+            )}
+          </span>
+          <div class="service-copy"><h3>{service.name}</h3><p>{service.description}</p></div>
+          <div class="service-meta">
+            {getWhatsAppUrl(service.whatsappMessage) && <a href={getWhatsAppUrl(service.whatsappMessage)} target="_blank" rel="noreferrer" aria-label={`Consultar sobre ${service.name} por WhatsApp`}><span>Consultar</span><ArrowUpRight size={15} /></a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <div class="services-empty">
+      <span class="services-empty-icon"><Sparkles size={20} /></span>
+       <div><strong>Consulta por los servicios de Valeria.</strong><p>Escríbele para conocer los detalles y la disponibilidad.</p></div>
+       {bookingUrl && <a href={bookingUrl} target="_blank" rel="noreferrer" aria-label="Consultar servicios por WhatsApp"><ArrowUpRight size={20} /></a>}
+    </div>
+  )}
+  {services.length > 0 && <p class="services-note">Precios desde C${business.startingPrice}. El costo final puede variar según el diseño y el servicio solicitado. {bookingUrl ? <a href={bookingUrl} target="_blank" rel="noreferrer">Consulta por WhatsApp.</a> : 'Consulta por WhatsApp.'}</p>}
+</section>

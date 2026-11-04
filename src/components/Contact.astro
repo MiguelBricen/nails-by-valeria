@@ -1,0 +1,32 @@
+---
+import { ArrowUpRight, Camera, Clock3, MapPin, MessageCircle } from '@lucide/astro';
+import { business, getInstagramUrl, getWhatsAppUrl, whatsappMessages } from '../data/business';
+
+const bookingUrl = getWhatsAppUrl(whatsappMessages.general);
+const instagramUrl = getInstagramUrl();
+---
+
+<section class="contact-section" id="contacto" aria-labelledby="contact-title">
+  <div class="contact-copy">
+    <p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> Contáctate con Valeria</p>
+    <h2 id="contact-title">Hablemos de<br /><em>tu próxima cita.</em></h2>
+    <p>Escríbele a Valeria para coordinar una cita o consultar por cualquiera de los diseños de la galería.</p>
+    {bookingUrl && <a class="button button-light" href={bookingUrl} target="_blank" rel="noreferrer">
+      <MessageCircle size={17} /> Escríbeme por WhatsApp <ArrowUpRight size={16} />
+    </a>}
+    {instagramUrl && <a class="button button-light" href={instagramUrl} target="_blank" rel="noreferrer">
+      <Camera size={17} /> Instagram de Valeria <ArrowUpRight size={16} />
+    </a>}
+    {!bookingUrl && !instagramUrl && <p class="contact-pending">Los datos de contacto se agregarán cuando Valeria los comparta.</p>}
+    <div class="contact-details">
+      {business.schedule.length > 0 && <div><Clock3 size={16} /><span>{business.schedule.map(({ day, hours }) => <span class="detail-line"><strong>{day}</strong> {hours}</span>)}</span></div>}
+      {business.location && <div><MapPin size={16} /><span>{business.location}</span></div>}
+      <div><MapPin size={16} /><span>{business.country}</span></div>
+    </div>
+  </div>
+  <div class="contact-aside" aria-hidden="true">
+    <span class="contact-star">✳</span>
+    <span class="contact-aside-note">MADE WITH CARE<br />& A LITTLE SPARKLE</span>
+    <span class="contact-aside-number">04</span>
+  </div>
+</section>
