@@ -24,7 +24,7 @@ const designPayload = designs.map(({ name, image, imageAlt, description, width, 
     <p class="section-aside">Explora la galería y abre cualquier fotografía para verla ampliada. Cada imagen conserva sus proporciones originales.</p>
   </div>
   <div class="gallery-toolbar">
-    <span class="gallery-count">{designs.length} FOTOGRAFÍAS · COLECCIÓN DE VALERIA</span>
+    <span class="gallery-count">{designs.length} FOTOGRAFÍAS</span>
     <span class="gallery-count gallery-hint">Selecciona una imagen para ampliar</span>
   </div>
   <div class="gallery-grid">
@@ -48,26 +48,25 @@ const designPayload = designs.map(({ name, image, imageAlt, description, width, 
           />
           <span class="design-open"><ArrowUpRight size={18} /></span>
         </span>
-        <span class="design-caption"><span>{design.name}</span><span>Galería de Valeria</span></span>
+        <span class="design-caption"><span>{design.name}</span></span>
       </button>
     ))}
   </div>
 
   <dialog class="lightbox" aria-label="Vista ampliada de la fotografía" aria-modal="true">
     <button class="lightbox-close" type="button" aria-label="Cerrar vista ampliada"><X size={22} /></button>
-    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Fotografía anterior"><ArrowLeft size={20} /></button>
     <div class="lightbox-image-wrap">
       <img class="lightbox-image" alt="" />
+      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Fotografía anterior"><ArrowLeft size={20} /></button>
+      <button class="lightbox-arrow lightbox-next" type="button" aria-label="Siguiente fotografía"><ArrowRight size={20} /></button>
     </div>
     <div class="lightbox-info">
-      <span class="lightbox-kicker">TRABAJOS DE NAILS BY VALERIA</span>
       <h3 class="lightbox-title"></h3>
       <p class="lightbox-description"></p>
       {bookingUrl && <a class="button button-dark lightbox-cta" href={bookingUrl} target="_blank" rel="noreferrer">
         Consultar por este diseño <ArrowUpRight size={16} />
       </a>}
     </div>
-    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Siguiente fotografía"><ArrowRight size={20} /></button>
   </dialog>
 </section>
 
@@ -79,6 +78,36 @@ const designPayload = designs.map(({ name, image, imageAlt, description, width, 
   const description = document.querySelector('.lightbox-description');
   const cta = document.querySelector('.lightbox-cta');
   let activeIndex = 0;
+  let opener = null;
+  let scrollY = 0;
+  let bodyStyles = null;
+
+  function lockPageScroll() {
+    scrollY = window.scrollY;
+    bodyStyles = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      right: document.body.style.right,
+      width: document.body.style.width,
+    };
+    document.body.classList.add('lightbox-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+
+  function unlockPageScroll() {
+    if (!bodyStyles) return;
+    document.body.classList.remove('lightbox-open');
+    Object.assign(document.body.style, bodyStyles);
+    bodyStyles = null;
+    window.scrollTo(0, scrollY);
+    opener?.focus({ preventScroll: true });
+    opener = null;
+  }
 
   function showDesign(index) {
     if (!designPayload.length) return;
@@ -95,18 +124,28 @@ const designPayload = designs.map(({ name, image, imageAlt, description, width, 
       cta.href = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(design.whatsappMessage)}`;
       cta.setAttribute('aria-label', `Consultar por WhatsApp sobre ${design.name}`);
     }
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) {
+      opener = document.activeElement;
+      lockPageScroll();
+      dialog.showModal();
+    }
   }
 
   cards.forEach((card) => card.addEventListener('click', () => showDesign(Number(card.dataset.designIndex))));
   document.querySelector('.lightbox-close')?.addEventListener('click', () => dialog?.close());
   document.querySelector('.lightbox-prev')?.addEventListener('click', () => showDesign(activeIndex - 1));
   document.querySelector('.lightbox-next')?.addEventListener('click', () => showDesign(activeIndex + 1));
+  dialog?.addEventListener('close', unlockPageScroll);
   dialog?.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
   document.addEventListener('keydown', (event) => {
     if (!dialog?.open) return;
+    if (event.key === 'Escape') {
+      dialog.close();
+      return;
+    }
+    if (event.target instanceof HTMLElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
     if (event.key === 'ArrowRight') showDesign(activeIndex + 1);
     if (event.key === 'ArrowLeft') showDesign(activeIndex - 1);
   });

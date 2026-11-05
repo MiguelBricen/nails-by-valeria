@@ -3,7 +3,7 @@ import type { Design } from './designs';
 export const generatedDesigns: Design[] = [
   {
     "id": "design-01",
-    "name": "Diseño 01",
+    "name": "01",
     "description": "Manicura nude con puntas amarillas y detalles brillantes.",
     "category": "Galería",
     "image": "/images/designs/design-01-1200.webp",
@@ -14,7 +14,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-02",
-    "name": "Diseño 02",
+    "name": "02",
     "description": "Uñas rosadas con puntas blancas, fotografiadas junto a una flor.",
     "category": "Galería",
     "image": "/images/designs/design-02-1200.webp",
@@ -25,7 +25,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-03",
-    "name": "Diseño 03",
+    "name": "03",
     "description": "Diseño en tonos nude y lila con detalles gráficos.",
     "category": "Galería",
     "image": "/images/designs/design-03-1200.webp",
@@ -36,7 +36,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-04",
-    "name": "Diseño 04",
+    "name": "04",
     "description": "Uñas rosadas y blancas con pequeños detalles dibujados.",
     "category": "Galería",
     "image": "/images/designs/design-04-1200.webp",
@@ -47,7 +47,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-05",
-    "name": "Diseño 05",
+    "name": "05",
     "description": "Diseño nude con detalles estampados en negro.",
     "category": "Galería",
     "image": "/images/designs/design-05-1200.webp",
@@ -58,7 +58,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-06",
-    "name": "Diseño 06",
+    "name": "06",
     "description": "Uñas rosadas con puntas rojas y un detalle blanco en relieve.",
     "category": "Galería",
     "image": "/images/designs/design-06-1200.webp",
@@ -69,7 +69,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-07",
-    "name": "Diseño 07",
+    "name": "07",
     "description": "Manicura rosada con puntas verdes y detalles gráficos.",
     "category": "Galería",
     "image": "/images/designs/design-07-1200.webp",
@@ -80,7 +80,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-08",
-    "name": "Diseño 08",
+    "name": "08",
     "description": "Diseño rojo y rosado con puntos blancos.",
     "category": "Galería",
     "image": "/images/designs/design-08-1200.webp",
@@ -91,7 +91,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-09",
-    "name": "Diseño 09",
+    "name": "09",
     "description": "Uñas nude y azul cobalto con detalles florales y dorados.",
     "category": "Galería",
     "image": "/images/designs/design-09-1200.webp",
@@ -102,7 +102,7 @@ export const generatedDesigns: Design[] = [
   },
   {
     "id": "design-10",
-    "name": "Diseño 10",
+    "name": "10",
     "description": "Diseño nude y azul cobalto con detalles claros y dorados.",
     "category": "Galería",
     "image": "/images/designs/design-10-1200.webp",

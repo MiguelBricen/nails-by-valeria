@@ -43,6 +43,10 @@ for (const [, href] of whatsappLinks) {
 for (const serviceMessage of [
   'Hola Valeria, estoy interesada en el servicio de uñas acrílicas. ¿Podrías brindarme información y disponibilidad?',
   'Hola Valeria, estoy interesada en el servicio de esmaltado. ¿Podrías brindarme información y disponibilidad?',
+  'Hola Valeria, estoy interesada en el servicio de semipermanente. ¿Podrías brindarme información y disponibilidad?',
+  'Hola Valeria, estoy interesada en el servicio de uñas en Soft Gel. ¿Podrías brindarme información y disponibilidad?',
+  'Hola Valeria, estoy interesada en el servicio de nivelación de Rubber. ¿Podrías brindarme información y disponibilidad?',
+  'Hola Valeria, estoy interesada en el servicio de manicura y brillo natural. ¿Podrías brindarme información y disponibilidad?',
 ]) {
   assert.ok(whatsappTexts.includes(serviceMessage), 'Falta el mensaje de WhatsApp configurado para un servicio.');
 }
@@ -55,6 +59,14 @@ assert.match(page, /Lunes a sábado/);
 assert.match(page, /7:00 a\. m\. a 5:00 p\. m\./);
 assert.match(page, /Uñas acrílicas/);
 assert.match(page, /Esmaltado/);
+assert.match(page, /Semipermanente/);
+assert.match(page, /Uñas en Soft Gel/);
+assert.match(page, /Nivelación de Rubber/);
+assert.match(page, /Manicura y brillo natural/);
+assert.doesNotMatch(page, /TRABAJOS DE NAILS BY VALERIA|Galería de Valeria|Diseño \d{2}/);
+for (let index = 1; index <= 10; index += 1) {
+  assert.ok(page.includes(`>${String(index).padStart(2, '0')}<`), `Falta el número de diseño ${index}.`);
+}
 assert.doesNotMatch(page, /instagram\.com/);
 for (const [, fragment] of page.matchAll(/href="#([^"]+)"/g)) {
   assert.ok(ids.has(fragment), `El enlace interno #${fragment} no tiene destino.`);
@@ -65,4 +77,4 @@ for (const placeholder of ['Pexels', 'Nacar Studio', 'nail-studio.pages.dev', 'T
   assert.ok(!page.includes(placeholder), `Se encontró contenido de demostración: ${placeholder}`);
 }
 
-console.log('Verificación correcta: fotografías, WebP, mensajes de WhatsApp, servicios, precio base, ubicación, horario, SEO y página 404.');
+console.log('Verificación correcta: fotografías, WebP, mensajes de WhatsApp, seis servicios, títulos de galería, precio base, ubicación, horario, SEO y página 404.');

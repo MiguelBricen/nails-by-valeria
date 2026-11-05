@@ -52,7 +52,7 @@ for (const original of originals) {
   generatedIds.add(designId);
   designs.push({
     id: designId,
-    name: `Diseño ${String(designs.length + 1).padStart(2, '0')}`,
+    name: String(designs.length + 1).padStart(2, '0'),
     description: details.description,
     category: 'Galería',
     image: fullImage,

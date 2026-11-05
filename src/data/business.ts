@@ -25,6 +25,8 @@ export const whatsappMessages = {
     'Hola Valeria, estoy interesada en el servicio de uñas acrílicas. ¿Podrías brindarme información y disponibilidad?',
   polish:
     'Hola Valeria, estoy interesada en el servicio de esmaltado. ¿Podrías brindarme información y disponibilidad?',
+  forService: (service: string) =>
+    `Hola Valeria, estoy interesada en el servicio de ${service}. ¿Podrías brindarme información y disponibilidad?`,
   forDesign: (name: string) =>
     `Hola Valeria, vi este diseño en tu catálogo y me gustaría consultar su precio y disponibilidad: ${name}.`,
 };
